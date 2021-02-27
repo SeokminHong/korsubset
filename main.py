@@ -11,7 +11,7 @@ parser.add_argument(
 )
 parser.add_argument("--noexport-css", action="store_true")
 parser.add_argument(
-    "--font-src", type=str, help="source of font to be written on .css file", default=""
+    "--font-url", type=str, help="font URL to be written on .css file", default=""
 )
 parser.add_argument("--family", type=str, help="font family")
 parser.add_argument(
@@ -56,7 +56,7 @@ subset_font(
     args.font,
     output_dir=args.output_dir,
     noexport_css=args.noexport_css,
-    font_src=args.font_src,
+    font_url=args.font_url,
     formats=formats,
     family=args.family,
     style=args.style,

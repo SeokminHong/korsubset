@@ -41,7 +41,7 @@ def make_subset(
     name="",
     output_dir="./",
     css: TextIOWrapper = None,
-    font_src="",
+    font_url="",
     formats=["woff2"],
     family: str = "",
     style="normal",
@@ -86,13 +86,19 @@ def make_subset(
                 options,
             )
     if css:
-        font_src = normpath(f"{font_src}/{name}.{idx}")
+        font_url = normpath(f"{font_url}/{name}.{idx}")
+        font_src = (
+            "url('{}.woff2')format('woff2'),".format(font_url)
+            if "woff2" in formats
+            else ""
+        ) + (
+            "url('{}.woff')format('woff')".format(font_url) if "woff" in formats else ""
+        )
         css.writelines(
             f"/*[{idx}]*/"
             f"@font-face{{"
             f"font-family:'{family}';"
-            f"src:{f'url({font_src}.woff2)format(''woff2''),' if 'woff2' in formats else ''}"
-            f"{f'url({font_src}.woff)format(''woff'')' if 'woff' in formats else ''};"
+            f"src:{font_src};"
             f"unicode-range:{fu};"
             f"font-weight: {weight};"
             f"font-style: {style};"
@@ -104,7 +110,7 @@ def subset_font(
     path: str,
     output_dir="./",
     noexport_css=False,
-    font_src="",
+    font_url="",
     formats=["woff2"],
     family: str = None,
     style: str = None,
@@ -143,7 +149,7 @@ def subset_font(
             name=name,
             output_dir=output_dir,
             css=css,
-            font_src=font_src,
+            font_url=font_url,
             formats=formats,
             family=family,
             style=style,
