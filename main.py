@@ -33,16 +33,19 @@ args = parser.parse_args()
 
 if not os.path.exists(args.font):
     raise (Exception(f"{args.font} not exists"))
-if args.weight not in [
-    "normal",
-    "bold",
-    "lighter",
-    "bolder",
-    "inherit",
-    "initial",
-    "unset",
-    *list(range(100, 1000, 100)),
-]:
+if (
+    args.weight
+    not in [
+        "normal",
+        "bold",
+        "lighter",
+        "bolder",
+        "inherit",
+        "initial",
+        "unset",
+    ]
+    and int(args.weight) not in range(100, 1000, 100)
+):
     raise (Exception("argument --weight: not compatible"))
 formats = args.format.split(",")
 for format in formats:
