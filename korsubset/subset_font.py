@@ -1,14 +1,10 @@
 import copy
-from os.path import normpath
+from os.path import normpath, dirname
 from pathlib import Path
 from io import TextIOWrapper
 from typing import List, Union
 from fontTools import subset
 from fontTools.ttLib.ttFont import TTFont
-
-with open("unicode-range.txt") as file:
-    unicode_ranges = file.readlines()
-unicode_ranges = [u.split(",") for u in unicode_ranges]
 
 
 def has_glyph(font, glyph):
@@ -116,6 +112,10 @@ def subset_font(
     style: str = None,
     weight: Union[str, int] = 400,
 ):
+    with open(f"{dirname(__file__)}/unicode-range.txt") as file:
+        unicode_ranges = file.readlines()
+    unicode_ranges = [u.split(",") for u in unicode_ranges]
+
     options = subset.Options()
     options.glyph_names = True
     options.symbol_cmap = True
