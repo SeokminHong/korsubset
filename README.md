@@ -43,6 +43,6 @@ korsubset 'my_font.otf' --output-dir='./my_font/' --font-url='/my_font/'
 | `--weight=`      | A value for `weight` properties of the CSS file | `400`                       |
 | `--format=`      | Output formats. `woff`, `woff2` or `woff,woff2` | `woff2`                     |
 
-## Disclaimer
+## Note
 
 This script transforms fonts to generate subsets. Please check the fonts' license before use. Also, this script includes Unicode ranges for general Korean fonts. Ligatures, emojis, and Chinese characters may not be included in output files.
