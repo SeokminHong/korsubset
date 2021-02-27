@@ -137,7 +137,6 @@ def subset_font(
     Path(output_dir).mkdir(parents=True, exist_ok=True)
 
     if not noexport_css:
-        print("css")
         css = open(f"{output_dir}/{name}.css", "w")
 
     for idx, ur in enumerate(unicode_ranges):
