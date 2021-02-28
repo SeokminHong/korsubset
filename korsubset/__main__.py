@@ -1,7 +1,7 @@
 import os
 import argparse
 
-from .subset_font import subset_font
+from .subset_font import subset_font, set_quiet
 
 SUPPORTED_FORMATS = ["woff", "woff2"]
 
@@ -9,10 +9,15 @@ SUPPORTED_FORMATS = ["woff", "woff2"]
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("font", type=str, help="font path")
+    parser.add_argument("-q", "--quiet", help="do not print logs", action="store_true")
     parser.add_argument(
         "--output-dir", type=str, help="fonts output dir", default="./output/"
     )
-    parser.add_argument("--noexport-css", action="store_true")
+    parser.add_argument(
+        "--noexport-css",
+        help="do not generate CSS file with this flag",
+        action="store_true",
+    )
     parser.add_argument(
         "--font-url", type=str, help="font URL to be written on .css file", default=""
     )
@@ -54,6 +59,9 @@ def main():
     for format in formats:
         if format not in SUPPORTED_FORMATS:
             raise (Exception(f"format {format} is not a supported format"))
+
+    if args.quiet:
+        set_quiet()
 
     subset_font(
         args.font,

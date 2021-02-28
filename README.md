@@ -27,7 +27,7 @@ korsubset {font_name}
 ### Example
 
 ```shell
-korsubset 'my_font.otf' --output-dir='./my_font/' --font-url='/my_font/'
+korsubset my_font.otf --output-dir=./my_font/ --font-url=/my_font/
 ```
 
 ### Options
@@ -35,7 +35,8 @@ korsubset 'my_font.otf' --output-dir='./my_font/' --font-url='/my_font/'
 | Name             | Description                                     | Default                     |
 | ---------------- | ----------------------------------------------- | --------------------------- |
 | `-h`, `--help`   | Display help                                    |                             |
-| `--output-dir=`  | A directory that subsets should be generated    | `./output`                  |
+| `-q`, `--quiet`  | Do not print log messages                       |                             |
+| `--output-dir=`  | A directory that subsets should be generated    | `./output/`                 |
 | `--noexport-css` | Do not make CSS file with this flag             |                             |
 | `--font-url=`    | A path for `src` properties of the CSS file     | `/`                         |
 | `--family=`      | A value for `family` properties of the CSS file | The family of the font file |
@@ -46,3 +47,11 @@ korsubset 'my_font.otf' --output-dir='./my_font/' --font-url='/my_font/'
 ## Note
 
 This script transforms fonts to generate subsets. Please check the fonts' license before use. Also, this script includes Unicode ranges for general Korean fonts. Ligatures, emojis, and Chinese characters may not be included in output files.
+
+## TODO
+
+- [ ] Add testing.
+- [ ] Supports .woff and .woff2 inputs.
+- [ ] ~~Supports .eot, .ttf, or .otf outputs.~~
+- [ ] Supports all CSS `@font-face` properties.
+- [ ] Supports customizing Unicode range.

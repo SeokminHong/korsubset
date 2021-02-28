@@ -7,6 +7,19 @@ from fontTools import subset
 from fontTools.ttLib.ttFont import TTFont
 
 
+quiet = False
+
+
+def set_quiet():
+    global quiet
+    quiet = True
+
+
+def print_log(*args):
+    if not quiet:
+        print(*args)
+
+
 def has_glyph(font, glyph):
     for table in font["cmap"].tables:
         if glyph in table.cmap.keys():
@@ -67,7 +80,7 @@ def make_subset(
         return
 
     unicodes = subset.parse_unicodes(fu)
-    print(f"{idx}: {len(unicodes)} glyphs are subsetted")
+    print_log(f"{idx}: {len(unicodes)} glyphs are subsetted")
     for format in formats:
         options.flavor = format
         if format == "woff":
@@ -96,8 +109,8 @@ def make_subset(
             f"font-family:'{family}';"
             f"src:{font_src};"
             f"unicode-range:{fu};"
-            f"font-weight: {weight};"
-            f"font-style: {style};"
+            f"font-weight:{weight};"
+            f"font-style:{style};"
             f"}}"
         )
 
@@ -127,7 +140,7 @@ def subset_font(
     options.name_IDs = "*"
     options.name_languages = "*"
 
-    font: TTFont = subset.load_font(path, options)
+    font = subset.load_font(path, options)
     name, _family, _style = font_name(font)
     if family is None:
         family = _family

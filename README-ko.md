@@ -25,7 +25,7 @@ korsubset {font_name}
 ### 예시
 
 ```shell
-korsubset 'my_font.otf' --output-dir='./my_font/' --font-url='/my_font/'
+korsubset my_font.otf --output-dir=./my_font/ --font-url=/my_font/
 ```
 
 ### 옵션
@@ -33,7 +33,8 @@ korsubset 'my_font.otf' --output-dir='./my_font/' --font-url='/my_font/'
 | 이름             | 설명                                                         | 기본값             |
 | ---------------- | ------------------------------------------------------------ | ------------------ |
 | `-h`, `--help`   | 도움말을 표시                                                |                    |
-| `--output-dir=`  | 서브셋이 생성될 디렉토리                                     | `./output`         |
+| `-q`, `--quiet`  | 표준 출력으로 로그 메시지를 출력하지 않음                    |                    |
+| `--output-dir=`  | 서브셋이 생성될 디렉토리                                     | `./output/`        |
 | `--noexport-css` | 이 플래그가 있으면 CSS 파일이 생성되지 않음                  |                    |
 | `--font-url=`    | CSS 파일의 `src` 프로퍼티의 경로                             | `/`                |
 | `--family=`      | CSS 파일의 `family` 프로퍼티의 값                            | 폰트 파일의 family |
@@ -44,3 +45,11 @@ korsubset 'my_font.otf' --output-dir='./my_font/' --font-url='/my_font/'
 ## 주의사항
 
 이 스크립트는 폰트를 변형하여 서브셋을 생성합니다. 폰트의 라이선스를 확인하고 사용해 주시기 바랍니다. 또한, 이 스크립트는 일반적인 한글 폰트에 대한 유니코드 범위만을 포함합니다. 원래 폰트에 포함된 합자(ligature), 이모지(emoji), 한자와 같은 문자들이 소실될 수 있습니다.
+
+## TODO
+
+- [ ] 테스트 추가.
+- [ ] .woff, .woff2 입력 지원.
+- [ ] ~~.eot, .ttf, .otf 출력 지원.~~
+- [ ] CSS `@font-face`의 모든 프로퍼티 지원.
+- [ ] 유니코드 범위 커스텀 지원.
